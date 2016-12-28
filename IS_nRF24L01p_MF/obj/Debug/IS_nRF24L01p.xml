@@ -1,0 +1,347 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+IS_nRF24L01p
+</name>
+</assembly>
+<members>
+<member name="E:IS_nRF24L01p.nRF24L01P.OnDataReceived">
+	<summary>
+ Occurs when data is received.
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="E:IS_nRF24L01p.nRF24L01P.OnDataReceiveFailed">
+	<summary>
+ Occurs when data is received with bad payload.
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="E:IS_nRF24L01p.nRF24L01P.OnTransmitFailed">
+	<summary>
+ Occurs when data is received.
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="E:IS_nRF24L01p.nRF24L01P.OnTransmitSuccess">
+	<summary>
+ Occurs when data is successfully transmitted.
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="F:IS_nRF24L01p.Common.Commands.R_REGISTER">
+	<summary>
+ Read command and status registers. AAAAA = 5 bit Register Map Address
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.W_REGISTER">
+	<summary>
+ Write command and status registers. AAAAA = 5 bit Register Map Address Executable in power down or standby modes only.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.R_RX_PAYLOAD">
+	<summary>
+ Read RX-payload: 1 – 32 bytes. A read operation always starts at byte 0. Payload is deleted from FIFO after it is read.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.W_TX_PAYLOAD">
+	<summary>
+ Write TX-payload: 1 – 32 bytes. A write operation always starts at byte 0 used in TX payload.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.FLUSH_TX">
+	<summary>
+ Flush TX FIFO, used in TX mode
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.FLUSH_RX">
+	<summary>
+ Flush RX FIFO, used in RX mode Should not be executed during transmission of acknowledge, 
+ that is, acknowledge package will not be completed.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.REUSE_TX_PL">
+	<summary>
+ Used for a PTX device Reuse last transmitted payload. TX payload reuse is active until
+ W_TX_PAYLOAD or FLUSH TX is executed. TX payload reuse must not be activated or 
+ deactivated during package transmission.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.R_RX_PL_WID">
+	<summary>
+ Read RX payload width for the top R_RX_PAYLOADin the RX FIFO.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.W_ACK_PAYLOAD">
+	<summary>
+ Used in RX mode.
+ Write Payload to be transmitted together with ACK packet on PIPE PPP. (PPP valid in the 
+ range from 000 to 101). Maximum three ACK packet payloads can be pending. Payloads with 
+ same PPP are handled using first in - first out principle. Write payload: 1– 32 bytes.
+ A write operation always starts at byte 0. </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.W_TX_PAYLOAD_NO_ACK">
+	<summary>
+ Used in TX mode. Disables AUTOACK on this specific packet.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.Commands.NOP">
+	<summary>
+ No Operation. Might be used to read the STATUS register
+ </summary>
+</member><member name="T:IS_nRF24L01p.Common.Commands">
+	<summary>
+   Commands for <see cref="T:IS_nRF24L01p.nRF24L01P"/>
+	</summary>
+</member><member name="T:IS_nRF24L01p.Common.Registers">
+	<summary>
+ Registers for <see cref="T:IS_nRF24L01p.nRF24L01P"/>
+	</summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.MASK_RX_DR">
+	<summary>
+ Mask interrupt caused by RX_DR
+ 1: Interrupt not reflected on the IRQ pin
+ 0: Reflect RX_DR as active low interrupt on the IRQpin
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.MASK_TX_DS">
+	<summary>
+ Mask interrupt caused by TX_DS
+ 1: Interrupt not reflected on the IRQ pin
+ 0: Reflect TX_DSas active low interrupt on the IRQ pin
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.MASK_MAX_RT">
+	<summary>
+ Mask interrupt caused by MAX_RT
+ 1: Interrupt not reflected on the IRQ pin
+ 0: Reflect MAX_RTas active low interrupt on the IRQ pin
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.EN_CRC">
+	<summary>
+ Enable CRC. Forced high if one of the bits in the EN_AA is high
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.CRCO">
+	<summary>
+ CRC encoding scheme
+ '0' - 1 Byte
+ '1' – 2 Bytes
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.PWR_UP">
+	<summary>
+ 1: POWER UP, 0:POWER DOWN
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.PRIM_RX">
+	<summary>
+ RX/TX control 
+ 1: PRX, 0: PTX 
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ENAA_P5">
+	<summary>
+ Enable auto acknowledgement data pipe 5
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ENAA_P4">
+	<summary>
+ Enable auto acknowledgement data pipe 4
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ENAA_P3">
+	<summary>
+ Enable auto acknowledgement data pipe 3
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ENAA_P2">
+	<summary>
+ Enable auto acknowledgement data pipe 2
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ENAA_P1">
+	<summary>
+ Enable auto acknowledgement data pipe 1
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ENAA_P0">
+	<summary>
+ Enable auto acknowledgement data pipe 0
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ERX_P5">
+	<summary>
+ Enable data pipe 5.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ERX_P4">
+	<summary>
+ Enable data pipe 4.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ERX_P3">
+	<summary>
+ Enable data pipe 3.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ERX_P2">
+	<summary>
+ Enable data pipe 2.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ERX_P1">
+	<summary>
+ Enable data pipe 1.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ERX_P0">
+	<summary>
+ Enable data pipe 0.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.AW_LOW">
+	<summary>
+ RX/TX Address field width 
+ '00' - Illegal
+ '01' - 3 Bytes 
+ '10' - 4 Bytes 
+ '11' – 5 Bytes
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.AW_HIGH">
+	<summary>
+ RX/TX Address field width 
+ '00' - Illegal
+ '01' - 3 Bytes 
+ '10' - 4 Bytes 
+ '11' – 5 Bytes
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ARD">
+	<summary>
+ Auto Retransmit Delay
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ARC">
+	<summary>
+ Auto Retransmit Count
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.CONT_WAVE">
+	<summary>
+ Enables continuous carrier transmit when high
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RF_DR_LOW">
+	<summary>
+	</summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.PLL_LOCK">
+	<summary>
+ Force PLL lock signal. Only used in test
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RF_DR_HIGH">
+	<summary>
+	</summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RF_PWR_LOW">
+	<summary>
+ Set RF output power in TX mode Low Bit
+ '00' – -18dBm
+ '01' – -12dBm
+ '10' – -6dBm
+ '11' – 0dBm
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RF_PWR_HIGH">
+	<summary>
+ Set RF output power in TX mode High Bit
+ '00' – -18dBm
+ '01' – -12dBm
+ '10' – -6dBm
+ '11' – 0dBm
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RX_DR">
+	<summary>
+ Data Ready RX FIFO interrupt. Asserted when new data arrives RX FIFO
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.TX_DS">
+	<summary>
+ Data Sent TX FIFO interrupt. Asserted when packet transmitted on TX. 
+ If AUTO_ACKis activated, this bit is set high only when ACK is received.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.MAX_RT">
+	<summary>
+ Maximum number of TX retransmits interrupt Write 1 to clear bit. 
+ If MAX_RTis asserted it must be cleared to enable further communication.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RX_P_NO">
+	<summary>
+ Data pipe number for the payload available for reading from RX_FIFO
+ 000-101: Data Pipe Number
+ 110: Not Used
+ 111: RX FIFO Empty
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.TX_FULL">
+	<summary>
+ TX FIFO full flag. 
+ 1: TX FIFO full. 
+ 0: Available locations in TX FIFO.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.PLOS_CNT">
+	<summary>
+ Count lost packets. The counter is overflow protected to 15, and discontinues at max until reset. 
+ The counter is reset by writing to RF_CH.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.ARC_CNT">
+	<summary>
+ Count retransmitted packets. 
+ The counter is reset when transmission of a new packet starts.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RPD">
+	<summary>
+ Received Power Detector. This register is called CD (Carrier Detect) in the nRF24L01. 
+ The name is different in nRF24L01+ due to the different input power level threshold for this bit. 
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.TX_REUSE">
+	<summary>
+ Used for a PTX device Pulse the rfce high for at least 10µs to Reuse last transmitted payload.
+ TX payload reuse is active until W_TX_PAYLOADor FLUSH TXis executed.
+ TX_REUSE is set by the SPI command REUSE_TX_PL, and is reset by the SPI commands W_TX_PAYLOAD or FLUSH TX
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.FIFO_FULL">
+	<summary>
+ TX FIFO full flag. 1: TX FIFO full. 0: Available locations in TX FIFO.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.TX_EMPTY">
+	<summary>
+ TX FIFO empty flag. 
+ 1: TX FIFO empty. 
+ 0: Data in TX FIFO.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RX_FULL">
+	<summary>
+ RX FIFO full flag. 
+ 1: RX FIFO full. 
+ 0: Available locations in RX FIFO.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.RX_EMPTY">
+	<summary>
+ RX FIFO empty flag. 
+ 1: RX FIFO empty. 
+ 0: Data in RX FIFO.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.DPL_P5">
+	<summary>
+ Enable dynamic payload length data pipe 0.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.DPL_P4">
+	<summary>
+ Enable dynamic payload length data pipe 0.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.DPL_P3">
+	<summary>
+ Enable dynamic payload length data pipe 0.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.DPL_P2">
+	<summary>
+ Enable dynamic payload length data pipe 0.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.DPL_P1">
+	<summary>
+ Enable dynamic payload length data pipe 0.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.DPL_P0">
+	<summary>
+ Enable dynamic payload length data pipe 0.
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.EN_DPL">
+	<summary>
+ Enables Dynamic Payload Length
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.EN_ACK_PAY">
+	<summary>
+ Enables Payload with ACK
+ </summary>
+</member><member name="F:IS_nRF24L01p.Common.BitFlags.EN_DYN_ACK">
+	<summary>
+ Enables the W_TX_PAYLOAD_NOACK command
+ </summary>
+</member><member name="T:IS_nRF24L01p.Common">
+	<summary>
+ Provide access to global definition
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

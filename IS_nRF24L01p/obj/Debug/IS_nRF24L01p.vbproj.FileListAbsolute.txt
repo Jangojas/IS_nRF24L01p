@@ -1,0 +1,38 @@
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\bin\Debug\IS_nRF24L01p.dll
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\bin\Debug\IS_nRF24L01p.pdb
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\bin\Debug\IS_nRF24L01p.xml
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\bin\Debug\IS_nRF24L01p.pri
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\IS_nRF24L01p.vbprojResolveAssemblyReference.cache
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\IS_nRF24L01p.dll
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\IS_nRF24L01p.xml
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\IS_nRF24L01p.pdb
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\priconfig.xml
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\priconfig.xml.intermediate
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\layout.resfiles
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\layout.resfiles.intermediate
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\resources.resfiles
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\resources.resfiles.intermediate
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\pri.resfiles
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\pri.resfiles.intermediate
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\qualifiers.txt
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\qualifiers.txt.intermediate
+C:\Users\jango\Source\Repos\GaeaG1\IS_nRF24L01p\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\bin\Debug\IS_nRF24L01p.dll
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\bin\Debug\IS_nRF24L01p.pdb
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\bin\Debug\IS_nRF24L01p.xml
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\bin\Debug\IS_nRF24L01p.pri
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\IS_nRF24L01p.vbprojResolveAssemblyReference.cache
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\IS_nRF24L01p.dll
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\IS_nRF24L01p.xml
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\IS_nRF24L01p.pdb
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\priconfig.xml
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\priconfig.xml.intermediate
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\layout.resfiles
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\layout.resfiles.intermediate
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\resources.resfiles
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\resources.resfiles.intermediate
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\pri.resfiles
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\pri.resfiles.intermediate
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\qualifiers.txt
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\qualifiers.txt.intermediate
+C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\Debug\MultipleQualifiersPerDimensionFound.txt
