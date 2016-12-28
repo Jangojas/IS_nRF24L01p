@@ -1,4 +1,4 @@
-﻿# What is IS_nRF24L01p?
+# What is IS_nRF24L01p?
 
 IS_nRF24L01p is a library implemented over the popular Nordic Semiconductor Radio Frequency chip nRF24L01p
 
