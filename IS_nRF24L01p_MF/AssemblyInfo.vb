@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("IS_nRF24L01p")> 
-<Assembly: AssemblyDescription("Driver NETMF for Nordic nRF24L01+")> 
+<Assembly: AssemblyDescription("Driver NETMF for Nordic nRF24L01p")> 
 <Assembly: AssemblyCompany("Inertia Systèmes")> 
 <Assembly: AssemblyProduct("IS_nRF24L01p")> 
-<Assembly: AssemblyCopyright("Copyright © Inertia Systèmes 2016")> 
+<Assembly: AssemblyCopyright("Copyright © Inertia Systèmes 2017")> 
 <Assembly: AssemblyTrademark("")> 
 
 ' Version information for an assembly consists of the following four values:
@@ -23,7 +23,7 @@ Imports System.Runtime.InteropServices
 '      Revision
 '
 
-<Assembly: AssemblyVersion("2016.4.23.0")> 
-<Assembly: AssemblyFileVersion("2016.4.23.0")> 
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> 
 
 

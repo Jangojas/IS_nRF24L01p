@@ -55,3 +55,22 @@ C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\ARM\Debug\
 C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\ARM\Debug\qualifiers.txt
 C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\ARM\Debug\qualifiers.txt.intermediate
 C:\Users\jango\Documents\Visual Studio 2015\Projects\IS_nRF24L01p\obj\ARM\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\bin\ARM\Debug\IS_nRF24L01p.dll
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\bin\ARM\Debug\IS_nRF24L01p.pdb
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\bin\ARM\Debug\IS_nRF24L01p.xml
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\bin\ARM\Debug\IS_nRF24L01p.pri
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\IS_nRF24L01p.dll
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\IS_nRF24L01p.xml
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\IS_nRF24L01p.pdb
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\priconfig.xml
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\priconfig.xml.intermediate
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\layout.resfiles
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\layout.resfiles.intermediate
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\resources.resfiles
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\resources.resfiles.intermediate
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\pri.resfiles
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\pri.resfiles.intermediate
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\qualifiers.txt
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\qualifiers.txt.intermediate
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\IS_nRF24L01p.vbprojResolveAssemblyReference.cache

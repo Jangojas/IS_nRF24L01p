@@ -4,6 +4,8 @@ Imports Windows.Devices.Spi
 Public Class nRF24L01P
     Implements IDisposable
 
+#Region "Events"
+
     ''' <summary>
     ''' Occurs when data is received.
     ''' </summary>
@@ -36,11 +38,171 @@ Public Class nRF24L01P
     ''' <remarks></remarks>
     Public Event OnTransmitSuccess(sender As Object, e As EventArgs)
 
+#End Region
+
+#Region "Properties"
+
+    ''' <summary>
+    ''' RF channel frequency. It determines the center of the channel used by the nRF24L01p. 
+    ''' Number from 0 to 125 are allowed.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ChannelFreq As Byte
+        Get
+            Return m_ChannelFreq
+        End Get
+        Set(value As Byte)
+            If value > 125 Then
+                m_ChannelFreq = 125
+            ElseIf value < 0 Then
+                m_ChannelFreq = 0
+            Else : m_ChannelFreq = value
+            End If
+
+            WriteRegister(Common.Registers.RF_CH, New Byte() {m_ChannelFreq})
+
+        End Set
+    End Property
+    Private m_ChannelFreq As Byte
+
+    ''' <summary>
+    ''' RF address width.
+    ''' 3 = 3 bytes width
+    ''' 4 = 4 bytes width
+    ''' 5 = 5 bytes width
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property AddressWidth As Byte
+        Get
+            Return m_AddressWidth
+        End Get
+        Set(value As Byte)
+            If value > 5 Then
+                m_AddressWidth = 5
+            ElseIf value < 3 Then
+                m_AddressWidth = 3
+            Else : m_AddressWidth = value
+            End If
+
+            Dim configByte As Byte
+            configByte = 0
+            Select Case m_AddressWidth
+                Case 3
+                    SetRegisterBit(configByte, False, Common.BitFlags.AW_LOW)
+                    SetRegisterBit(configByte, True, Common.BitFlags.AW_HIGH)
+                Case 4
+                    SetRegisterBit(configByte, True, Common.BitFlags.AW_LOW)
+                    SetRegisterBit(configByte, False, Common.BitFlags.AW_HIGH)
+                Case 5
+                    SetRegisterBit(configByte, True, Common.BitFlags.AW_LOW)
+                    SetRegisterBit(configByte, True, Common.BitFlags.AW_HIGH)
+            End Select
+
+            WriteRegister(Common.Registers.SETUP_AW, New Byte() {configByte})
+
+        End Set
+    End Property
+    Private m_AddressWidth As Byte
+
+    ''' <summary>
+    ''' RF db Power
+    ''' 0 = -18dBm
+    ''' 1 = -12dBm
+    ''' 2 = -6dBm
+    ''' 3 =  0dbm
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property dbPower As Byte
+        Get
+            Return m_dbPower
+        End Get
+        Set(value As Byte)
+            If value > 3 Then
+                m_dbPower = 3
+            ElseIf value < 0 Then
+                m_dbPower = 0
+            Else : m_dbPower = value
+            End If
+
+            Dim configByte As Byte
+            configByte = 0
+
+            Select Case m_dbPower
+                Case 0  '-18dBm
+                    SetRegisterBit(configByte, False, Common.BitFlags.RF_PWR_LOW)
+                    SetRegisterBit(configByte, False, Common.BitFlags.RF_PWR_HIGH)
+                Case 1   '-12dBm
+                    SetRegisterBit(configByte, False, Common.BitFlags.RF_PWR_LOW)
+                    SetRegisterBit(configByte, True, Common.BitFlags.RF_PWR_HIGH)
+                Case 2   '-6dBm
+                    SetRegisterBit(configByte, True, Common.BitFlags.RF_PWR_LOW)
+                    SetRegisterBit(configByte, False, Common.BitFlags.RF_PWR_HIGH)
+                Case 3   '0dBm
+                    SetRegisterBit(configByte, True, Common.BitFlags.RF_PWR_LOW)
+                    SetRegisterBit(configByte, True, Common.BitFlags.RF_PWR_HIGH)
+            End Select
+
+            WriteRegister(Common.Registers.RF_SETUP, New Byte() {configByte})
+
+        End Set
+    End Property
+    Private m_dbPower As Byte
+
+    ''' <summary>
+    ''' RF Speed
+    ''' 0 = 250kbps
+    ''' 1 = 1Mbps
+    ''' 2 = 2Mbps
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property Speed As Byte
+        Get
+            Return m_Speed
+        End Get
+        Set(value As Byte)
+            If value > 2 Then
+                m_Speed = 2
+            ElseIf value < 0 Then
+                m_Speed = 0
+            Else : m_Speed = value
+            End If
+
+            Dim configByte As Byte
+            configByte = 0
+
+            Select Case m_Speed
+                Case 0  '250Kbps
+                    SetRegisterBit(configByte, True, Common.BitFlags.RF_DR_LOW)
+                    SetRegisterBit(configByte, False, Common.BitFlags.RF_DR_HIGH)
+
+                Case 1   '1Mbps
+                    SetRegisterBit(configByte, False, Common.BitFlags.RF_DR_LOW)
+                    SetRegisterBit(configByte, False, Common.BitFlags.RF_DR_HIGH)
+                Case 2   '2Mbps
+                    SetRegisterBit(configByte, False, Common.BitFlags.RF_DR_LOW)
+                    SetRegisterBit(configByte, True, Common.BitFlags.RF_DR_HIGH)
+            End Select
+
+            WriteRegister(Common.Registers.RF_SETUP, New Byte() {configByte})
+
+        End Set
+    End Property
+    Private m_Speed As Byte
+
+#End Region
+
     Public NordicChipEnablePin As GpioPin
     Public WithEvents NordicInterruptPin As GpioPin
     Public NordicSPI As SpiDevice
     Public WithEvents timer_SPI As DispatcherTimer
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="SPI"></param>
+    ''' <param name="Speed"></param>
+    ''' <param name="ChipEnablePin"></param>
+    ''' <param name="InterruptPin"></param>
     Public Sub New(SPI As SpiConnectionSettings, Speed As Integer, ChipEnablePin As Integer, InterruptPin As Integer)
 
         Try
