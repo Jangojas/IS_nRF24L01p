@@ -72,6 +72,21 @@ IS_nRF24L01p
  No Operation. Might be used to read the STATUS register
  </summary>
 </member>
+<member name="T:IS_nRF24L01p.Common.AddressWidth">
+ <summary>
+ Address width option for <see cref="T:IS_nRF24L01p.nRF24L01P"/>
+ </summary>
+</member>
+<member name="T:IS_nRF24L01p.Common.dbPower">
+ <summary>
+ Power option for <see cref="T:IS_nRF24L01p.nRF24L01P"/>
+ </summary>
+</member>
+<member name="T:IS_nRF24L01p.Common.RFSpeed">
+ <summary>
+ Speed option for <see cref="T:IS_nRF24L01p.nRF24L01P"/>
+ </summary>
+</member>
 <member name="T:IS_nRF24L01p.Common.Registers">
  <summary>
  Registers for <see cref="T:IS_nRF24L01p.nRF24L01P"/>
@@ -417,28 +432,18 @@ IS_nRF24L01p
 <member name="P:IS_nRF24L01p.nRF24L01P.AddressWidth">
  <summary>
  RF address width.
- 3 = 3 bytes width
- 4 = 4 bytes width
- 5 = 5 bytes width
  </summary>
  <returns></returns>
 </member>
 <member name="P:IS_nRF24L01p.nRF24L01P.dbPower">
  <summary>
  RF db Power
- 0 = -18dBm
- 1 = -12dBm
- 2 = -6dBm
- 3 =  0dbm
  </summary>
  <returns></returns>
 </member>
 <member name="P:IS_nRF24L01p.nRF24L01P.Speed">
  <summary>
  RF Speed
- 0 = 250kbps
- 1 = 1Mbps
- 2 = 2Mbps
  </summary>
  <returns></returns>
 </member>

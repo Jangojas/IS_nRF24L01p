@@ -67,33 +67,31 @@ Public Class nRF24L01P
 
     ''' <summary>
     ''' RF address width.
-    ''' 3 = 3 bytes width
-    ''' 4 = 4 bytes width
-    ''' 5 = 5 bytes width
     ''' </summary>
     ''' <returns></returns>
-    Public Property AddressWidth As Byte
+    Public Property AddressWidth As Common.AddressWidth
         Get
             Return m_AddressWidth
         End Get
-        Set(value As Byte)
+        Set(value As Common.AddressWidth)
             If value > 5 Then
-                m_AddressWidth = 5
+                m_AddressWidth = Common.AddressWidth.ADR_5
             ElseIf value < 3 Then
-                m_AddressWidth = 3
+                m_AddressWidth = Common.AddressWidth.ADR_3
             Else : m_AddressWidth = value
             End If
 
             Dim configByte As Byte
             configByte = 0
+
             Select Case m_AddressWidth
-                Case 3
+                Case Common.AddressWidth.ADR_3
                     SetRegisterBit(configByte, False, Common.BitFlags.AW_LOW)
                     SetRegisterBit(configByte, True, Common.BitFlags.AW_HIGH)
-                Case 4
+                Case Common.AddressWidth.ADR_4
                     SetRegisterBit(configByte, True, Common.BitFlags.AW_LOW)
                     SetRegisterBit(configByte, False, Common.BitFlags.AW_HIGH)
-                Case 5
+                Case Common.AddressWidth.ADR_5
                     SetRegisterBit(configByte, True, Common.BitFlags.AW_LOW)
                     SetRegisterBit(configByte, True, Common.BitFlags.AW_HIGH)
             End Select
@@ -102,92 +100,88 @@ Public Class nRF24L01P
 
         End Set
     End Property
-    Private m_AddressWidth As Byte
+    Private m_AddressWidth As Common.AddressWidth
 
     ''' <summary>
     ''' RF db Power
-    ''' 0 = -18dBm
-    ''' 1 = -12dBm
-    ''' 2 = -6dBm
-    ''' 3 =  0dbm
     ''' </summary>
     ''' <returns></returns>
-    Public Property dbPower As Byte
+    Public Property dbPower As Common.dbPower
         Get
             Return m_dbPower
         End Get
-        Set(value As Byte)
-            If value > 3 Then
-                m_dbPower = 3
-            ElseIf value < 0 Then
-                m_dbPower = 0
+        Set(value As Common.dbPower)
+
+            If value > Common.dbPower.PWR_0db Then
+                m_dbPower = Common.dbPower.PWR_0db
+            ElseIf value < Common.dbPower.PWR_minus_18db Then
+                m_dbPower = Common.dbPower.PWR_minus_18db
             Else : m_dbPower = value
             End If
 
-            Dim configByte As Byte
-            configByte = 0
+            Dim configByte As Byte()
+            configByte = ReadRegister(Common.Registers.RF_SETUP)
 
             Select Case m_dbPower
-                Case 0  '-18dBm
-                    SetRegisterBit(configByte, False, Common.BitFlags.RF_PWR_LOW)
-                    SetRegisterBit(configByte, False, Common.BitFlags.RF_PWR_HIGH)
-                Case 1   '-12dBm
-                    SetRegisterBit(configByte, False, Common.BitFlags.RF_PWR_LOW)
-                    SetRegisterBit(configByte, True, Common.BitFlags.RF_PWR_HIGH)
-                Case 2   '-6dBm
-                    SetRegisterBit(configByte, True, Common.BitFlags.RF_PWR_LOW)
-                    SetRegisterBit(configByte, False, Common.BitFlags.RF_PWR_HIGH)
-                Case 3   '0dBm
-                    SetRegisterBit(configByte, True, Common.BitFlags.RF_PWR_LOW)
-                    SetRegisterBit(configByte, True, Common.BitFlags.RF_PWR_HIGH)
+                Case Common.dbPower.PWR_minus_18db  '-18dBm
+                    SetRegisterBit(configByte(0), False, Common.BitFlags.RF_PWR_LOW)
+                    SetRegisterBit(configByte(0), False, Common.BitFlags.RF_PWR_HIGH)
+                Case Common.dbPower.PWR_minus_12db   '-12dBm
+                    SetRegisterBit(configByte(0), False, Common.BitFlags.RF_PWR_LOW)
+                    SetRegisterBit(configByte(0), True, Common.BitFlags.RF_PWR_HIGH)
+                Case Common.dbPower.PWR_minus_6db   '-6dBm
+                    SetRegisterBit(configByte(0), True, Common.BitFlags.RF_PWR_LOW)
+                    SetRegisterBit(configByte(0), False, Common.BitFlags.RF_PWR_HIGH)
+                Case Common.dbPower.PWR_0db   '0dBm
+                    SetRegisterBit(configByte(0), True, Common.BitFlags.RF_PWR_LOW)
+                    SetRegisterBit(configByte(0), True, Common.BitFlags.RF_PWR_HIGH)
             End Select
 
-            WriteRegister(Common.Registers.RF_SETUP, New Byte() {configByte})
+            WriteRegister(Common.Registers.RF_SETUP, New Byte() {configByte(0)})
 
         End Set
     End Property
-    Private m_dbPower As Byte
+    Private m_dbPower As Common.dbPower
 
     ''' <summary>
     ''' RF Speed
-    ''' 0 = 250kbps
-    ''' 1 = 1Mbps
-    ''' 2 = 2Mbps
     ''' </summary>
     ''' <returns></returns>
-    Public Property Speed As Byte
+    Public Property Speed As Common.RFSpeed
         Get
             Return m_Speed
         End Get
-        Set(value As Byte)
-            If value > 2 Then
-                m_Speed = 2
-            ElseIf value < 0 Then
-                m_Speed = 0
+        Set(value As Common.RFSpeed)
+
+            If value > Common.RFSpeed.HIGH_2000 Then
+                m_Speed = Common.RFSpeed.HIGH_2000
+            ElseIf value < Common.RFSpeed.LOW_250 Then
+                m_Speed = Common.RFSpeed.LOW_250
             Else : m_Speed = value
             End If
 
-            Dim configByte As Byte
-            configByte = 0
+            Dim configByte As Byte()
+            configByte = ReadRegister(Common.Registers.RF_SETUP)
 
             Select Case m_Speed
-                Case 0  '250Kbps
-                    SetRegisterBit(configByte, True, Common.BitFlags.RF_DR_LOW)
-                    SetRegisterBit(configByte, False, Common.BitFlags.RF_DR_HIGH)
+                Case Common.RFSpeed.LOW_250  '250Kbps
+                    SetRegisterBit(configByte(0), True, Common.BitFlags.RF_DR_LOW)
+                    SetRegisterBit(configByte(0), False, Common.BitFlags.RF_DR_HIGH)
 
-                Case 1   '1Mbps
-                    SetRegisterBit(configByte, False, Common.BitFlags.RF_DR_LOW)
-                    SetRegisterBit(configByte, False, Common.BitFlags.RF_DR_HIGH)
-                Case 2   '2Mbps
-                    SetRegisterBit(configByte, False, Common.BitFlags.RF_DR_LOW)
-                    SetRegisterBit(configByte, True, Common.BitFlags.RF_DR_HIGH)
+                Case Common.RFSpeed.MID_1000   '1Mbps
+                    SetRegisterBit(configByte(0), False, Common.BitFlags.RF_DR_LOW)
+                    SetRegisterBit(configByte(0), False, Common.BitFlags.RF_DR_HIGH)
+
+                Case Common.RFSpeed.HIGH_2000   '2Mbps
+                    SetRegisterBit(configByte(0), False, Common.BitFlags.RF_DR_LOW)
+                    SetRegisterBit(configByte(0), True, Common.BitFlags.RF_DR_HIGH)
             End Select
 
-            WriteRegister(Common.Registers.RF_SETUP, New Byte() {configByte})
+            WriteRegister(Common.Registers.RF_SETUP, New Byte() {configByte(0)})
 
         End Set
     End Property
-    Private m_Speed As Byte
+    Private m_Speed As Common.RFSpeed
 
 #End Region
 

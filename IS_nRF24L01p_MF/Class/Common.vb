@@ -8,7 +8,7 @@ Public NotInheritable Class Common
 #Region "Commands"
 
     ''' <summary>
-    '''   Commands for <see cref="Nrf24L01P"/>
+    '''   Commands for <see cref="nRF24L01p"/>
     ''' </summary>
     Public Enum Commands As Byte
 
@@ -76,10 +76,42 @@ Public NotInheritable Class Common
 
 #End Region
 
+#Region "Options"
+
+    ''' <summary>
+    ''' Address width option for <see cref="nRF24L01p"/>
+    ''' </summary>
+    Public Enum AddressWidth As Byte
+        ADR_3 = 3
+        ADR_4 = 4
+        ADR_5 = 5
+    End Enum
+
+    ''' <summary>
+    ''' Power option for <see cref="nRF24L01p"/>
+    ''' </summary>
+    Public Enum dbPower As Byte
+        PWR_minus_18db = 0
+        PWR_minus_12db = 1
+        PWR_minus_6db = 2
+        PWR_0db = 3
+    End Enum
+
+    ''' <summary>
+    ''' Speed option for <see cref="nRF24L01p"/>
+    ''' </summary>
+    Public Enum RFSpeed As Byte
+        LOW_250 = 0
+        MID_1000 = 1
+        HIGH_2000 = 2
+    End Enum
+
+#End Region
+
 #Region "Registers"
 
     ''' <summary>
-    ''' Registers for <see cref="Nrf24L01P"/>
+    ''' Registers for <see cref="nRF24L01p"/>
     ''' </summary>
     Public Enum Registers As Byte
         CONFIG = &H0
