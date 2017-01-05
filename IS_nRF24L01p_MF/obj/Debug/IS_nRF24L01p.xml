@@ -373,6 +373,15 @@ IS_nRF24L01p
  2 = 2Mbps
  </summary>
 	<returns></returns>
+</member><member name="M:IS_nRF24L01p.nRF24L01P.#ctor(Microsoft.SPOT.Hardware.SPI.SPI_module,System.UInt32,Microsoft.SPOT.Hardware.Cpu.Pin,Microsoft.SPOT.Hardware.Cpu.Pin,Microsoft.SPOT.Hardware.Cpu.Pin)">
+	<summary>
+	</summary>
+	<param name="SPI"></param>
+	<param name="Speed"></param>
+	<param name="ChipSelectPin"></param>
+	<param name="ChipEnablePin"></param>
+	<param name="InterruptPin"></param>
+	<remarks></remarks>
 </member>
 </members>
 </doc>

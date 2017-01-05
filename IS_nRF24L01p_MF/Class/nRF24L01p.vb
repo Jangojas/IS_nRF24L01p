@@ -197,6 +197,15 @@ Public Class nRF24L01P
     Private WithEvents NordicInterruptPin As InterruptPort
     Private NordicSPI As SPI
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="SPI"></param>
+    ''' <param name="Speed"></param>
+    ''' <param name="ChipSelectPin"></param>
+    ''' <param name="ChipEnablePin"></param>
+    ''' <param name="InterruptPin"></param>
+    ''' <remarks></remarks>
     Public Sub New(SPI As SPI.SPI_module, Speed As UInteger, ChipSelectPin As Cpu.Pin, ChipEnablePin As Cpu.Pin, InterruptPin As Cpu.Pin)
 
         NordicSPI = New SPI(New SPI.Configuration(ChipSelectPin, False, 0, 0, False, True, Speed, SPI))
