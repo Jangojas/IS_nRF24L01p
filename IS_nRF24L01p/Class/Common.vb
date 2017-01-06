@@ -1,4 +1,7 @@
-﻿Public NotInheritable Class Common
+﻿''' <summary>
+''' Provide access to global definition
+''' </summary>
+Public NotInheritable Class Common
 
 #Region "Commands"
 
@@ -430,7 +433,5 @@
     End Enum
 
 #End Region
-
-
 
 End Class

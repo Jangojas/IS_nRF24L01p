@@ -375,6 +375,36 @@ IS_nRF24L01p
  RF Speed
  </summary>
 	<returns></returns>
+</member><member name="P:IS_nRF24L01p.nRF24L01P.Pipe_0_Address">
+	<summary>
+ Pipe 0 address. 5 bytes maximum.
+ </summary>
+	<returns></returns>
+</member><member name="P:IS_nRF24L01p.nRF24L01P.Pipe_1_Address">
+	<summary>
+ Pipe 1 address. 5 bytes maximum.
+ </summary>
+	<returns></returns>
+</member><member name="P:IS_nRF24L01p.nRF24L01P.Pipe_2_Address">
+	<summary>
+ Pipe 2 address. Takes only the LSB. Data pipes 1-5 share the most significant address bytes.
+ </summary>
+	<returns></returns>
+</member><member name="P:IS_nRF24L01p.nRF24L01P.Pipe_3_Address">
+	<summary>
+ Pipe 3 address. Takes only the LSB. Data pipes 1-5 share the most significant address bytes.
+ </summary>
+	<returns></returns>
+</member><member name="P:IS_nRF24L01p.nRF24L01P.Pipe_4_Address">
+	<summary>
+ Pipe 4 address. Takes only the LSB. Data pipes 1-5 share the most significant address bytes.
+ </summary>
+	<returns></returns>
+</member><member name="P:IS_nRF24L01p.nRF24L01P.Pipe_5_Address">
+	<summary>
+ Pipe 5 address. Takes only the LSB. Data pipes 1-5 share the most significant address bytes.
+ </summary>
+	<returns></returns>
 </member><member name="M:IS_nRF24L01p.nRF24L01P.#ctor(Microsoft.SPOT.Hardware.SPI.SPI_module,System.UInt32,Microsoft.SPOT.Hardware.Cpu.Pin,Microsoft.SPOT.Hardware.Cpu.Pin,Microsoft.SPOT.Hardware.Cpu.Pin)">
 	<summary>
 	</summary>
@@ -383,6 +413,24 @@ IS_nRF24L01p
 	<param name="ChipSelectPin"></param>
 	<param name="ChipEnablePin"></param>
 	<param name="InterruptPin"></param>
+	<remarks></remarks>
+</member><member name="M:IS_nRF24L01p.nRF24L01P.SetAsPTX(System.Byte[]@)">
+	<summary>
+ Set the nRF24L01p as a Transmitter
+ </summary>
+	<param name="TX_ADDR"></param>
+	<remarks></remarks>
+</member><member name="M:IS_nRF24L01p.nRF24L01P.SetAsPRX">
+	<summary>
+ Set the nRF24L01p as a Receiver
+ </summary>
+	<remarks></remarks>
+</member><member name="M:IS_nRF24L01p.nRF24L01P.SendPayload(System.Byte[],System.Byte[]@)">
+	<summary>
+ Used to send data to another nRF24L01p enabled module
+ </summary>
+	<param name="Message">Bytes array containing the message to send</param>
+	<param name="TX_ADDR">Bytes array containing the address of destination device</param>
 	<remarks></remarks>
 </member>
 </members>
