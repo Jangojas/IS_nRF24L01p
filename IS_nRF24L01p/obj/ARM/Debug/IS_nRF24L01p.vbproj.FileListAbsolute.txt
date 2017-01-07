@@ -73,3 +73,4 @@ C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\pri.resfiles
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\qualifiers.txt
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\qualifiers.txt.intermediate
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p\obj\ARM\Debug\IS_nRF24L01p.vbprojResolveAssemblyReference.cache

@@ -475,6 +475,7 @@ Public Class nRF24L01P
         Dim configByte As Byte
         '#######################################################################################
         'In PTX mode with Enhanced Shockburst and Auto Ack, data pipe 0 address must be equal to TX_ADDR.
+        WriteRegister(Common.Registers.TX_ADDR, TX_ADDR)
         WriteRegister(Common.Registers.RX_ADDR_P0, TX_ADDR)
 
         '#######################################################################################

@@ -318,7 +318,6 @@ Public Class nRF24L01P
     Public NordicChipEnablePin As GpioPin
     Public WithEvents NordicInterruptPin As GpioPin
     Public NordicSPI As SpiDevice
-    Public WithEvents timer_SPI As DispatcherTimer
 
     ''' <summary>
     ''' 
@@ -349,10 +348,6 @@ Public Class nRF24L01P
         SPI.Mode = SpiMode.Mode0
         Dim mySPIController As SpiController = Await SpiController.GetDefaultAsync()
         NordicSPI = mySPIController.GetDevice(SPI)
-
-        timer_SPI = New DispatcherTimer()
-        timer_SPI.Interval = TimeSpan.FromMilliseconds(5)
-        timer_SPI.Start()
 
         '#######################################################################################
         'Empty TX FIFO
@@ -487,6 +482,7 @@ Public Class nRF24L01P
         Dim configByte As Byte
         '#######################################################################################
         'In PTX mode with Enhanced Shockburst and Auto Ack, data pipe 0 address must be equal to TX_ADDR.
+        WriteRegister(Common.Registers.TX_ADDR, TX_ADDR)
         WriteRegister(Common.Registers.RX_ADDR_P0, TX_ADDR)
 
         '#######################################################################################
@@ -589,69 +585,72 @@ Public Class nRF24L01P
 
     End Sub
 
-    Private Sub timer_SPI_Tick(sender As Object, e As Object) Handles timer_SPI.Tick
+    Private Sub NordicInterruptPin_ValueChanged(sender As GpioPin, args As GpioPinValueChangedEventArgs) Handles NordicInterruptPin.ValueChanged
+        If args.Edge = GpioPinEdge.FallingEdge Then
 
-        If NordicInterruptPin.Read() = GpioPinValue.Low Then
+            If NordicInterruptPin.Read() = GpioPinValue.Low Then
 
-            'Get the STATUS Register
-            Dim writeBuffer(1) As Byte
-            Dim StatusBuffer(1) As Byte
+                'Get the STATUS Register
+                Dim writeBuffer(1) As Byte
+                Dim StatusBuffer(1) As Byte
 
-            writeBuffer(0) = Common.Commands.NOP
-            NordicSPI.TransferFullDuplex(writeBuffer, StatusBuffer)
+                writeBuffer(0) = Common.Commands.NOP
+                NordicSPI.TransferFullDuplex(writeBuffer, StatusBuffer)
 
-            '########################################################
-            'Vérifier les bits d'état du status
+                '########################################################
+                'Vérifier les bits d'état du status
 
-            If (StatusBuffer(0) And &H10) = &H10 Then    'MAX_RT : Maximum number of retransmit reached
-                FlushTXFIFO()
-                RaiseEvent OnTransmitFailed(Me, New DataTransmitFailedEventArgs(StatusBuffer(0)))
+                If (StatusBuffer(0) And &H10) = &H10 Then    'MAX_RT : Maximum number of retransmit reached
+                    FlushTXFIFO()
+                    RaiseEvent OnTransmitFailed(Me, New DataTransmitFailedEventArgs(StatusBuffer(0)))
+
+                End If
+
+                If (StatusBuffer(0) And &H20) = &H20 Then 'TX_DS : Données envoyées
+                    RaiseEvent OnTransmitSuccess(Me, EventArgs.Empty)
+
+                End If
+
+                If (StatusBuffer(0) And &H40) = &H40 Then 'RX_DR : Données disponible dans le FIFO
+
+                    Dim pipeID As Byte
+                    Dim PayloadLen As Byte
+
+                    While True
+                        'Obtenir le PIPE_ID
+                        pipeID = CByte((StatusBuffer(0) And &HE) / 2)
+                        PayloadLen = ReadRXFIFOWidth()
+                        Dim Payload(PayloadLen - 1) As Byte
+
+                        If PayloadLen > 32 Then
+                            FlushRXFIFO()
+                            RaiseEvent OnDataReceiveFailed(Me, New DataReceiveFailedEventArgs(pipeID, StatusBuffer(0)))
+
+                        Else
+                            Array.Copy(ReadFIFO(PayloadLen), 1, Payload, 0, PayloadLen)
+                            RaiseEvent OnDataReceived(Me, New DataReceivedEventArgs(pipeID, Payload))
+
+                        End If
+
+                        Dim FIFOStatusBuf(1) As Byte
+
+                        FIFOStatusBuf = ReadRegister(Common.Registers.FIFO_STATUS)
+
+                        If (FIFOStatusBuf(1) And &H1) = &H1 Then
+                            Exit While
+                        End If
+                    End While
+
+                End If
+
+                SetRegisterBit(StatusBuffer(0), True, Common.BitFlags.MAX_RT)
+                SetRegisterBit(StatusBuffer(0), True, Common.BitFlags.TX_DS)
+                SetRegisterBit(StatusBuffer(0), True, Common.BitFlags.RX_DR)
+                WriteRegister(Common.Registers.STATUS, New Byte() {StatusBuffer(0)})
+
+                NordicInterruptPin.Write(GpioPinValue.High)
 
             End If
-
-            If (StatusBuffer(0) And &H20) = &H20 Then 'TX_DS : Données envoyées
-                RaiseEvent OnTransmitSuccess(Me, EventArgs.Empty)
-
-            End If
-
-            If (StatusBuffer(0) And &H40) = &H40 Then 'RX_DR : Données disponible dans le FIFO
-
-                Dim pipeID As Byte
-                Dim PayloadLen As Byte
-
-                While True
-                    'Obtenir le PIPE_ID
-                    pipeID = CByte((StatusBuffer(0) And &HE) / 2)
-                    PayloadLen = ReadRXFIFOWidth()
-                    Dim Payload(PayloadLen - 1) As Byte
-
-                    If PayloadLen > 32 Then
-                        FlushRXFIFO()
-                        RaiseEvent OnDataReceiveFailed(Me, New DataReceiveFailedEventArgs(pipeID, StatusBuffer(0)))
-
-                    Else
-                        Array.Copy(ReadFIFO(PayloadLen), 1, Payload, 0, PayloadLen)
-                        RaiseEvent OnDataReceived(Me, New DataReceivedEventArgs(pipeID, Payload))
-
-                    End If
-
-                    Dim FIFOStatusBuf(1) As Byte
-
-                    FIFOStatusBuf = ReadRegister(Common.Registers.FIFO_STATUS)
-
-                    If (FIFOStatusBuf(1) And &H1) = &H1 Then
-                        Exit While
-                    End If
-                End While
-
-            End If
-
-            SetRegisterBit(StatusBuffer(0), True, Common.BitFlags.MAX_RT)
-            SetRegisterBit(StatusBuffer(0), True, Common.BitFlags.TX_DS)
-            SetRegisterBit(StatusBuffer(0), True, Common.BitFlags.RX_DR)
-            WriteRegister(Common.Registers.STATUS, New Byte() {StatusBuffer(0)})
-
-            NordicInterruptPin.Write(GpioPinValue.High)
 
         End If
     End Sub
@@ -686,10 +685,10 @@ Public Class nRF24L01P
         GC.SuppressFinalize(Me)
     End Sub
 
+
 #End Region
 
 #Region "EventArgs"
-
 
     Public Class DataReceivedEventArgs
         Inherits EventArgs
