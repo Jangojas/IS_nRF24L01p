@@ -337,7 +337,7 @@ Public Class nRF24L01P
 
     Private Async Sub InitNordicSPI(SPIDesc As String, SPI As SpiConnectionSettings, Speed As Integer, ChipEnablePin As Integer, InterruptPin As Integer)
 
-        Dim strDesc As String = SpiDevice.GetDeviceSelector("SPI1")
+        Dim strDesc As String = SpiDevice.GetDeviceSelector(SPIDesc)
         Dim r As DeviceInformationCollection = Await DeviceInformation.FindAllAsync(strDesc)
         If (r.Count = 0) Then
             Return
@@ -355,8 +355,6 @@ Public Class nRF24L01P
 
         SPI.ClockFrequency = Speed
         SPI.Mode = SpiMode.Mode0
-        SPI.DataBitLength = 8
-        SPI.SharingMode = SpiSharingMode.Exclusive
 
         NordicSPI = Await SpiDevice.FromIdAsync(r(0).Id, SPI)
 
