@@ -1,4 +1,5 @@
-﻿Imports Windows.Devices.Gpio
+﻿Imports Windows.Devices.Enumeration
+Imports Windows.Devices.Gpio
 Imports Windows.Devices.Spi
 
 Public Class nRF24L01P
@@ -323,17 +324,24 @@ Public Class nRF24L01P
     ''' <summary>
     ''' 
     ''' </summary>
+    ''' <param name="SPIDesc">SPI bus descriptor. For RPi2 it's SPI0 or SPI1</param>
     ''' <param name="SPI"></param>
     ''' <param name="Speed"></param>
     ''' <param name="ChipEnablePin"></param>
     ''' <param name="InterruptPin"></param>
-    Public Sub New(SPI As SpiConnectionSettings, Speed As Integer, ChipEnablePin As Integer, InterruptPin As Integer)
+    Public Sub New(SPI As SpiConnectionSettings, Speed As Integer, ChipEnablePin As Integer, InterruptPin As Integer, Optional SPIDesc As String = "SPI0")
 
-        InitNordicSPI(SPI, Speed, ChipEnablePin, InterruptPin)
+        InitNordicSPI(SPIDesc, SPI, Speed, ChipEnablePin, InterruptPin)
 
     End Sub
 
-    Private Async Sub InitNordicSPI(SPI As SpiConnectionSettings, Speed As Integer, ChipEnablePin As Integer, InterruptPin As Integer)
+    Private Async Sub InitNordicSPI(SPIDesc As String, SPI As SpiConnectionSettings, Speed As Integer, ChipEnablePin As Integer, InterruptPin As Integer)
+
+        Dim strDesc As String = SpiDevice.GetDeviceSelector("SPI1")
+        Dim r As DeviceInformationCollection = Await DeviceInformation.FindAllAsync(strDesc)
+        If (r.Count = 0) Then
+            Return
+        End If
 
         Dim myGpioController As GpioController = Await GpioController.GetDefaultAsync()
         If myGpioController Is Nothing Then
@@ -347,8 +355,10 @@ Public Class nRF24L01P
 
         SPI.ClockFrequency = Speed
         SPI.Mode = SpiMode.Mode0
-        Dim mySPIController As SpiController = Await SpiController.GetDefaultAsync()
-        NordicSPI = mySPIController.GetDevice(SPI)
+        SPI.DataBitLength = 8
+        SPI.SharingMode = SpiSharingMode.Exclusive
+
+        NordicSPI = Await SpiDevice.FromIdAsync(r(0).Id, SPI)
 
         timer_SPI = New DispatcherTimer()
         timer_SPI.Interval = TimeSpan.FromMilliseconds(5)
