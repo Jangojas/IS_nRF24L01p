@@ -488,7 +488,7 @@ IS_nRF24L01p
  </summary>
  <returns></returns>
 </member>
-<member name="M:IS_nRF24L01p.nRF24L01P.#ctor(Windows.Devices.Spi.SpiConnectionSettings,System.Int32,System.Int32,System.Int32)">
+<member name="M:IS_nRF24L01p.nRF24L01P.InitNordicSPI(Windows.Devices.Spi.SpiConnectionSettings,System.Int32,System.Int32,System.Int32,System.String)">
  <summary>
  
  </summary>
@@ -496,6 +496,67 @@ IS_nRF24L01p
  <param name="Speed"></param>
  <param name="ChipEnablePin"></param>
  <param name="InterruptPin"></param>
+ <param name="SPIDesc"></param>
+ <returns></returns>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.ReadFIFO(System.Byte)">
+ <summary>
+ 
+ </summary>
+ <param name="width"></param>
+ <returns></returns>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.ReadRegister(IS_nRF24L01p.Common.Registers,System.Byte)">
+ <summary>
+ 
+ </summary>
+ <param name="register"></param>
+ <param name="size"></param>
+ <returns></returns>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.WriteRegister(IS_nRF24L01p.Common.Registers,System.Byte[])">
+ <summary>
+ 
+ </summary>
+ <param name="register"></param>
+ <param name="data"></param>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.WritePayload(System.Byte[])">
+ <summary>
+ 
+ </summary>
+ <param name="data"></param>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.FlushTXFIFO">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.FlushRXFIFO">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.ReadRXFIFOWidth">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.SetRegisterBit(System.Byte@,System.Boolean,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="registerByte"></param>
+ <param name="value"></param>
+ <param name="index"></param>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.SetChipEnable(System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="value"></param>
 </member>
 <member name="M:IS_nRF24L01p.nRF24L01P.SetAsPTX(System.Byte[]@)">
  <summary>
@@ -517,6 +578,13 @@ IS_nRF24L01p
  <param name="Message">Bytes array containing the message to send</param>
  <param name="TX_ADDR">Bytes array containing the address of destination device</param>
  <remarks></remarks>
+</member>
+<member name="M:IS_nRF24L01p.nRF24L01P.timer_SPI_Tick(System.Object,System.Object)">
+ <summary>
+ 
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
 </member>
 </members>
 </doc>

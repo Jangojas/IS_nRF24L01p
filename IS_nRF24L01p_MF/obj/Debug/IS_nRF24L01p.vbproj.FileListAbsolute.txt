@@ -28,7 +28,6 @@ C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\bin\Debug\le\IS_nRF24L0
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\bin\Debug\le\IS_nRF24L01p.pdbx
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\bin\Debug\be\IS_nRF24L01p.pe
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\bin\Debug\be\IS_nRF24L01p.pdbx
-C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\TinyCLR_DebugReferences.cache
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\be\IS_nRF24L01p.pe
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\be\IS_nRF24L01p.pdbx
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\le\IS_nRF24L01p.pe
@@ -36,3 +35,4 @@ C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\le\IS_nRF24L0
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\IS_nRF24L01p.dll
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\IS_nRF24L01p.xml
 C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\IS_nRF24L01p.pdb
+C:\Users\jango\Source\Repos\IS_nRF24L01p\IS_nRF24L01p_MF\obj\Debug\TinyCLR_DebugReferences.cache

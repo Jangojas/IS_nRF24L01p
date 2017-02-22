@@ -235,85 +235,65 @@ Public Class nRF24L01P
     ''' Pipe 2 address. Takes only the LSB. Data pipes 1-5 share the most significant address bytes.
     ''' </summary>
     ''' <returns></returns>
-    Public Property Pipe_2_Address As Byte()
+    Public Property Pipe_2_Address As Byte
         Get
             Return m_Pipe_2_Address
         End Get
-        Set(value As Byte())
+        Set(value As Byte)
 
-            'Data pipes 1-5 share the four most significant address bytes.
-            Dim buffer(Pipe_1_Address.Length - 1) As Byte
-            Array.Copy(Pipe_1_Address, buffer, buffer.Length)
-            m_Pipe_2_Address = buffer
-            'Change the LSB
-            m_Pipe_2_Address(0) = value(0)
+            m_Pipe_2_Address = value
 
         End Set
     End Property
-    Private m_Pipe_2_Address As Byte()
+    Private m_Pipe_2_Address As Byte
 
     ''' <summary>
     ''' Pipe 3 address. Takes only the LSB. Data pipes 1-5 share the most significant address bytes.
     ''' </summary>
     ''' <returns></returns>
-    Public Property Pipe_3_Address As Byte()
+    Public Property Pipe_3_Address As Byte
         Get
             Return m_Pipe_3_Address
         End Get
-        Set(value As Byte())
+        Set(value As Byte)
 
-            'Data pipes 1-5 share the four most significant address bytes.
-            Dim buffer(Pipe_1_Address.Length - 1) As Byte
-            Array.Copy(Pipe_1_Address, buffer, buffer.Length)
-            m_Pipe_3_Address = buffer
-            'Change the LSB
-            m_Pipe_3_Address(0) = value(0)
+            m_Pipe_3_Address = value
 
         End Set
     End Property
-    Private m_Pipe_3_Address As Byte()
+    Private m_Pipe_3_Address As Byte
 
     ''' <summary>
     ''' Pipe 4 address. Takes only the LSB. Data pipes 1-5 share the most significant address bytes.
     ''' </summary>
     ''' <returns></returns>
-    Public Property Pipe_4_Address As Byte()
+    Public Property Pipe_4_Address As Byte
         Get
             Return m_Pipe_4_Address
         End Get
-        Set(value As Byte())
+        Set(value As Byte)
 
-            'Data pipes 1-5 share the four most significant address bytes.
-            Dim buffer(Pipe_1_Address.Length - 1) As Byte
-            Array.Copy(Pipe_1_Address, buffer, buffer.Length)
-            m_Pipe_4_Address = buffer
-            'Change the LSB
-            m_Pipe_4_Address(0) = value(0)
+            m_Pipe_4_Address = value
 
         End Set
     End Property
-    Private m_Pipe_4_Address As Byte()
+    Private m_Pipe_4_Address As Byte
 
     ''' <summary>
     ''' Pipe 5 address. Takes only the LSB. Data pipes 1-5 share the most significant address bytes.
     ''' </summary>
     ''' <returns></returns>
-    Public Property Pipe_5_Address As Byte()
+    Public Property Pipe_5_Address As Byte
         Get
             Return m_Pipe_5_Address
         End Get
-        Set(value As Byte())
+        Set(value As Byte)
 
-            'Data pipes 1-5 share the four most significant address bytes.
-            Dim buffer(Pipe_1_Address.Length - 1) As Byte
-            Array.Copy(Pipe_1_Address, buffer, buffer.Length)
-            m_Pipe_5_Address = buffer
-            'Change the LSB
-            m_Pipe_5_Address(0) = value(0)
+            m_Pipe_5_Address = value
 
         End Set
     End Property
-    Private m_Pipe_5_Address As Byte()
+    Private m_Pipe_5_Address As Byte
 
 #End Region
 
@@ -350,10 +330,10 @@ Public Class nRF24L01P
 
         Pipe_0_Address = New Byte() {&H0, &H0, &H0}
         Pipe_1_Address = New Byte() {&H0, &H0, &H0}
-        Pipe_2_Address = New Byte() {&H0, &H0, &H0}
-        Pipe_3_Address = New Byte() {&H0, &H0, &H0}
-        Pipe_4_Address = New Byte() {&H0, &H0, &H0}
-        Pipe_5_Address = New Byte() {&H0, &H0, &H0}
+        Pipe_2_Address = &H0
+        Pipe_3_Address = &H0
+        Pipe_4_Address = &H0
+        Pipe_5_Address = &H0
 
     End Sub
 
@@ -511,10 +491,10 @@ Public Class nRF24L01P
         'Data Pipes address to use
         WriteRegister(Common.Registers.RX_ADDR_P0, Pipe_0_Address)
         WriteRegister(Common.Registers.RX_ADDR_P1, Pipe_1_Address)
-        WriteRegister(Common.Registers.RX_ADDR_P2, Pipe_2_Address)
-        WriteRegister(Common.Registers.RX_ADDR_P3, Pipe_3_Address)
-        WriteRegister(Common.Registers.RX_ADDR_P4, Pipe_4_Address)
-        WriteRegister(Common.Registers.RX_ADDR_P5, Pipe_5_Address)
+        WriteRegister(Common.Registers.RX_ADDR_P2, New Byte() {Pipe_2_Address})
+        WriteRegister(Common.Registers.RX_ADDR_P3, New Byte() {Pipe_3_Address})
+        WriteRegister(Common.Registers.RX_ADDR_P4, New Byte() {Pipe_4_Address})
+        WriteRegister(Common.Registers.RX_ADDR_P5, New Byte() {Pipe_5_Address})
 
         '#######################################################################################
         'PTX (Primary Receiver)
@@ -674,7 +654,6 @@ Public Class nRF24L01P
 #End Region
 
 #Region "EventArgs"
-
 
     Public Class DataReceivedEventArgs
         Inherits EventArgs
