@@ -5,10 +5,7 @@ IS_nRF24L01p is a library implemented over the popular Nordic Semiconductor Radi
 This project aims to give .NET developers the tools necessary for the realization of applications using the nRF24L01p.
 
 ## IS_nRF24L01p is actually avalaible on the following Platform :
-* .Net Framework Portable 
-    * .NET Framework 4.6 
-    *  ASP.NET Core 5.0 
-    *  Windows Universal 10.0 
+* Windows Universal 10.0 
 * .Net Micro Framework 4.3 
 
 # Resources
